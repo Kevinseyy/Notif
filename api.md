@@ -19,7 +19,7 @@ Other people in the group can respond with quick options like:
 
 Returns groups the current user is a member of.
 
-Response
+### Response
 
 ```json
 { "groupId": "G1", "name": "Game session?", "memberCount": 4 }
@@ -31,13 +31,13 @@ Response
 
 Creates a new group
 
-Request
+### Request
 
 ```json
 { "name": "Going out?" }
 
 
-Response
+### Response
 
 { "groupId": "G2", "name": "Going out?", "memberCount": 1 }
 ```
@@ -48,12 +48,12 @@ Response
 
 Adds a user to a group
 
-Request
+### Request
 
 ```json
 { "userId": "usr_2"}
 
-Response
+### Response
 
 { "groupId": "G2", "userId": "usr_2"}
 
@@ -66,13 +66,26 @@ Response
 
 Updates the current user´s availability status
 
-Request
+### Request
 
 ```json
 { "status": "FREE_NOW"}
 
-
-Response
+### Response
 
 { "userId": "usr_2", "status": "FREE_NOW", "updatedAt": " 2026-01-21-timezone"}
+```
+
+---
+
+### GET /groups/:groupId/status
+
+Returns the current availability status for all members in a group
+
+### Response
+
+```json
+{ "userId": "usr_1", "displayName": "Kevin", "status": "FREE_NOW", "updatedAt": "2026-01-21-21T12:00:00Z"}
+
+{ "userId": "usr_2", "displayName": "Modi", "status": "BUSY", "updatedAt": "2026-01-21-21T11:45:00Z"}
 ```
