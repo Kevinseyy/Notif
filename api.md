@@ -22,7 +22,7 @@ Returns groups the current user is a member of.
 Response
 
 ```json
-{ "id": "G1", "name": "Game session?", "memberCount": 4 }
+{ "groupId": "G1", "name": "Game session?", "memberCount": 4 }
 ```
 
 ---
@@ -39,7 +39,7 @@ Request
 
 Response
 
-{ "id": "G2", "name": "Going out?", "memberCount": 1 }
+{ "groupId": "G2", "name": "Going out?", "memberCount": 1 }
 ```
 
 ---
@@ -51,11 +51,11 @@ Adds a user to a group
 Request
 
 ```json
-{ "userId": "FM"}
+{ "userId": "usr_2"}
 
 Response
 
-{ "groupId": "G2", "userId": "FM"}
+{ "groupId": "G2", "userId": "usr_2"}
 
 
 ```
@@ -65,3 +65,14 @@ Response
 ### PUT /status
 
 Updates the current user´s availability status
+
+Request
+
+```json
+{ "status": "FREE_NOW"}
+
+
+Response
+
+{ "userId": "usr_2", "status": "FREE_NOW", "updatedAt": " 2026-01-21-timezone"}
+```
