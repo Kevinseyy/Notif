@@ -290,3 +290,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.content {
+  margin-top: 18px;
+}
