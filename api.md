@@ -5,15 +5,12 @@ Base URL: /api/v1
 ## What this API is for
 
 This API is for a friend-group app where someone can press “I’m free” inside a group.
-Other people in the group can respond with quick options like:
-
-- Free in 15 minutes
-- Free in 30 minutes
-- Free tonight
 
 ## The API stores groups, members and status
 
 ---
+
+### Groups
 
 ## GET /groups
 
@@ -61,6 +58,8 @@ Adds a user to a group
 ```
 
 ---
+
+### Status
 
 ### PUT /status
 
