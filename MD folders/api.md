@@ -15,6 +15,8 @@ Other people in the group can respond with quick options like:
 
 ---
 
+### Groups
+
 ## GET /groups
 
 Returns groups the current user is a member of.
@@ -61,6 +63,8 @@ Adds a user to a group
 ```
 
 ---
+
+### Status
 
 ### PUT /status
 
