@@ -21,7 +21,7 @@
             </div>
          </header>
 
-         <main class="content">
+         <main class="content" id="homeView">
 
             <section class="panel left">
                 <h1>Start plans faster.</h1>
@@ -38,6 +38,9 @@
                     <button class="primary-btn" id="createGroupBtn">Create Group</button>
                     <button class="secondary-btn" id="learnMoreBtn">Learn more</button>
                   </div>
+
+                  <div id="groupsList" class="groups-list"></div>
+
                 </section>
           
                 <section class="panel right">
@@ -48,6 +51,60 @@
                   </div>
                 </section>
          </main>
+
+         <main class="content" id="groupView" style="display: none;">
+            <section class="panel left">
+              <h1 id="groupTitle">Group</h1>
+              <p class="muted">Invite friends and set your status.</p>
+          
+              <div class="cta-row">
+                <button class="primary-btn" id="freeNowBtn">Free now</button>
+                <button class="secondary-btn" id="inviteBtn">Invite</button>
+                <button class="secondary-btn" id="backHomeBtn">Back</button>
+              </div>
+          
+              <div id="groupInfo" class="muted" style="margin-top: 14px;"></div>
+            </section>
+          
+            <section class="panel right">
+              <div class="image-card">
+                <div class="image-placeholder">
+                  Group activity / members list later
+                </div>
+              </div>
+            </section>
+          </main>
+          
+
+         <dialog class="modal" id="createGroupModal">
+            <div class="modal-card">
+              <div class="modal-header">
+                <h2>Create group</h2>
+                <button class="icon-btn" id="closeCreateGroupModalBtn" aria-label="Close">
+                  ✕
+                </button>
+              </div>
+          
+              <div class="field">
+                <span>Group name</span>
+                <input
+                  id="groupNameInput"
+                  type="text"
+                  placeholder="e.g. Game night"
+                  maxlength="30"
+                />
+              </div>
+              
+              <p class="form-error" id="createGroupError"></p>
+          
+              <div class="cta-row">
+                <button class="secondary-btn" id="cancelCreateGroupBtn">Cancel</button>
+                <button class="primary-btn" id="submitCreateGroupBtn">Create</button>
+              </div>
+            </div>
+          </dialog>
+          
+
           
 
     <script src="./app.mjs" type="module"></script>
