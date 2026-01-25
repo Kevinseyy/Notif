@@ -1,25 +1,32 @@
 import express from "express";
+import { validateBody } from "./middleware/validateBody.mjs";
 
 export const apiRouter = express.Router();
 
 const groups = [];
 
-apiRouter.post("/groups", (req, res) => {
-  const { name } = req.body;
+apiRouter.post(
+  "/groups",
+  validateBody({
+    name: {
+      required: true,
+      type: "string",
+      trim: true,
+      minLength: 2,
+      maxLength: 30,
+    },
+  }),
+  (req, res) => {
+    const name = req.body.name.trim();
 
-  if (!name || name.trim().length < 2) {
-    return res.status(400).json({
-      error: "Group name must be at least 2 characters",
-    });
+    const group = {
+      groupId: `G${groups.length + 1}`,
+      name,
+      memberCount: 1,
+    };
+
+    groups.push(group);
+
+    res.status(201).json(group);
   }
-
-  const group = {
-    groupId: `G${groups.length + 1}`,
-    name: name.trim(),
-    memberCount: 1,
-  };
-
-  groups.push(group);
-
-  res.status(201).json(group);
-});
+);
