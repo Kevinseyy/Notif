@@ -1,12 +1,26 @@
+// --------------------------------------------------
+
+const currentUser = {
+  displayName: "Kevin", // placeholder for now
+};
+
+let currentStatus = "BUSY";
+
+// --------------------------------------------------
+
+const homeView = document.getElementById("homeView");
 const createGroupBtn = document.getElementById("createGroupBtn");
 const groupsList = document.getElementById("groupsList");
 
-const homeView = document.getElementById("homeView");
-const groupView = document.getElementById("groupView");
+// --------------------------------------------------
 
+const groupView = document.getElementById("groupView");
 const groupTitle = document.getElementById("groupTitle");
 const groupInfo = document.getElementById("groupInfo");
-const backHomeBtn = document.getElementById("backHomeBtn");
+const memberList = document.getElementById("memberList");
+const freeNowBtn = document.getElementById("freeNowBtn");
+
+// --------------------------------------------------
 
 const createGroupModal = document.getElementById("createGroupModal");
 const closeCreateGroupModalBtn = document.getElementById(
@@ -17,6 +31,25 @@ const submitCreateGroupBtn = document.getElementById("submitCreateGroupBtn");
 const groupNameInput = document.getElementById("groupNameInput");
 const createGroupError = document.getElementById("createGroupError");
 
+// --------------------------------------------------
+
+function setError(msg = "") {
+  createGroupError.textContent = msg;
+}
+
+function openCreateGroupModal() {
+  setError("");
+  groupNameInput.value = "";
+  createGroupModal.showModal();
+  setTimeout(() => groupNameInput.focus(), 0);
+}
+
+function closeCreateGroupModal() {
+  createGroupModal.close();
+}
+
+// --------------------------------------------------
+
 function addGroupTab(group) {
   const tab = document.createElement("div");
   tab.className = "group-tab";
@@ -26,22 +59,27 @@ function addGroupTab(group) {
     <span>${group.memberCount} member</span>
   `;
 
+  tab.addEventListener("click", () => {
+    goToGroupView(group);
+  });
+
   groupsList.prepend(tab);
 }
 
-function setError(msg = "") {
-  createGroupError.textContent = msg;
-}
+// --------------------------------------------------
 
-function openCreateGroupModal() {
-  setError("");
-  createGroupModal.showModal();
-  groupNameInput.value = "";
-  setTimeout(() => groupNameInput.focus(), 0);
-}
+function renderMember(name, status) {
+  memberList.innerHTML = "";
 
-function closeCreateGroupModal() {
-  createGroupModal.close();
+  const el = document.createElement("div");
+  el.className = "member";
+
+  el.innerHTML = `
+    <span class="member-name">${name}</span>
+    <span class="status-dot ${status === "FREE" ? "green" : "red"}"></span>
+  `;
+
+  memberList.appendChild(el);
 }
 
 function goToGroupView(group) {
@@ -50,16 +88,16 @@ function goToGroupView(group) {
 
   groupTitle.textContent = group.name;
   groupInfo.textContent = `Group ID: ${group.groupId} • Members: ${group.memberCount}`;
+
+  currentStatus = "BUSY"; // 🔴 reset on enter
+  renderMember(currentUser.displayName, currentStatus);
 }
 
-function goHome() {
-  groupView.style.display = "none";
-  homeView.style.display = "grid";
-}
+// --------------------------------------------------
 
-createGroupBtn.addEventListener("click", () => {
-  openCreateGroupModal();
-});
+createGroupBtn.addEventListener("click", openCreateGroupModal);
+
+// --------------------------------------------------
 
 closeCreateGroupModalBtn.addEventListener("click", closeCreateGroupModal);
 cancelCreateGroupBtn.addEventListener("click", closeCreateGroupModal);
@@ -76,9 +114,7 @@ groupNameInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") submitCreateGroupBtn.click();
 });
 
-backHomeBtn.addEventListener("click", () => {
-  goHome();
-});
+// --------------------------------------------------
 
 submitCreateGroupBtn.addEventListener("click", async () => {
   const name = groupNameInput.value.trim();
@@ -109,7 +145,6 @@ submitCreateGroupBtn.addEventListener("click", async () => {
 
     addGroupTab(group);
     closeCreateGroupModal();
-
     goToGroupView(group);
   } catch (err) {
     console.error(err);
@@ -118,4 +153,11 @@ submitCreateGroupBtn.addEventListener("click", async () => {
     submitCreateGroupBtn.disabled = false;
     submitCreateGroupBtn.textContent = "Create";
   }
+});
+
+// --------------------------------------------------
+
+freeNowBtn.addEventListener("click", () => {
+  currentStatus = "FREE";
+  renderMember(currentUser.displayName, currentStatus);
 });
