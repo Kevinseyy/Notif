@@ -53,27 +53,39 @@
          </main>
 
          <main class="content" id="groupView" style="display: none;">
-            <section class="panel left">
-              <h1 id="groupTitle">Group</h1>
-              <p class="muted">Invite friends and set your status.</p>
+          <button class="primary-btn free-now-btn" id="freeNowBtn">
+            Free now
+          </button>
           
-              <div class="cta-row">
-                <button class="primary-btn" id="freeNowBtn">Free now</button>
-                <button class="secondary-btn" id="inviteBtn">Invite</button>
-                <button class="secondary-btn" id="backHomeBtn">Back</button>
+          <section class="panel left group-panel">
+            
+            <div class="group-header">
+              <h1 id="groupTitle">Group name</h1>
+            </div>
+        
+         
+            <div class="member-list" id="memberList">
+              <div class="member">
+                <span class="member-name">Kevin</span>
+                <span class="status-dot red"></span>
               </div>
-          
-              <div id="groupInfo" class="muted" style="margin-top: 14px;"></div>
-            </section>
-          
-            <section class="panel right">
-              <div class="image-card">
-                <div class="image-placeholder">
-                  Group activity / members list later
-                </div>
-              </div>
-            </section>
-          </main>
+            </div>
+        
+            <div class="group-footer muted" id="groupInfo">
+              Group info
+            </div>
+          </section>
+        
+          <section class="panel right group-actions">
+            <div class="group-actions-top">
+              <button class="secondary-btn" id="inviteBtn">Invite</button>
+              <button class="secondary-btn" id="statusBtn">Status</button>
+            </div>
+        
+            
+          </section>
+        </main>
+        
           
 
          <dialog class="modal" id="createGroupModal">
