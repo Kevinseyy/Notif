@@ -157,7 +157,24 @@ submitCreateGroupBtn.addEventListener("click", async () => {
 
 // --------------------------------------------------
 
-freeNowBtn.addEventListener("click", () => {
-  currentStatus = "FREE";
-  renderMember(currentUser.displayName, currentStatus);
+freeNowBtn.addEventListener("click", async () => {
+  try {
+    const res = await fetch("/api/v1/status", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "FREE_NOW" }),
+    });
+
+    if (!res.ok) {
+      console.error("Failed to update status");
+      return;
+    }
+
+    const data = await res.json();
+
+    currentStatus = data.status === "FREE_NOW" ? "FREE" : "BUSY";
+    renderMember(currentUser.displayName, currentStatus);
+  } catch (err) {
+    console.error(err);
+  }
 });
