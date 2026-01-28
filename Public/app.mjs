@@ -33,6 +33,12 @@ const createGroupError = document.getElementById("createGroupError");
 
 // --------------------------------------------------
 
+const inviteBtn = document.getElementById("inviteBtn");
+const inviteModal = document.getElementById("inviteModal");
+const closeInviteModalBtn = document.getElementById("closeInviteModalBtn");
+
+// --------------------------------------------------
+
 function setError(msg = "") {
   createGroupError.textContent = msg;
 }
@@ -80,6 +86,11 @@ function renderMember(name, status) {
   `;
 
   memberList.appendChild(el);
+
+  const dot = el.querySelector(".status-dot");
+  if (status === "FREE") {
+    dot.classList.add("jump");
+  }
 }
 
 function goToGroupView(group) {
@@ -112,6 +123,18 @@ groupNameInput.addEventListener("input", () => {
 
 groupNameInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") submitCreateGroupBtn.click();
+});
+
+inviteBtn.addEventListener("click", () => {
+  inviteModal.showModal();
+});
+
+closeInviteModalBtn.addEventListener("click", () => {
+  inviteModal.close();
+});
+
+inviteModal.addEventListener("click", (e) => {
+  if (e.target === inviteModal) inviteModal.close();
 });
 
 // --------------------------------------------------

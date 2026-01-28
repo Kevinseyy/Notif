@@ -382,9 +382,9 @@ body {
 
 /* STATUS DOTS */
 .status-dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 25%;
 }
 
 .status-dot.red {
@@ -428,4 +428,48 @@ body {
 
 #groupView {
   align-items: start;
+}
+
+/* INVITE MODAL */
+.invite-results {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.invite-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.secondary-btn.small {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+@keyframes status-jump {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(-15px) scale(2);
+  }
+  60% {
+    transform: translateY(0) scale(0.95);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.status-dot.jump {
+  animation: status-jump 500ms ease-out;
 }
