@@ -35,10 +35,9 @@ body {
 }
 
 .topbar {
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
 
   padding: 14px 16px;
   border: 1px solid var(--border);
@@ -49,10 +48,10 @@ body {
 }
 
 .brand {
-  text-align: center;
+  text-align: left;
   font-weight: 800;
-  letter-spacing: 2px;
-  font-size: 22px;
+  letter-spacing: 5px;
+  font-size: 25px;
 }
 
 .auth-actions {
@@ -64,7 +63,7 @@ body {
   height: 40px;
   width: 40px;
   border-radius: 12px;
-  border: 1px solid var(--border);
+  border: 1 solid var(--border);
   background: transparent;
   color: var(--text);
   cursor: pointer;
